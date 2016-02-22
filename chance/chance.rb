@@ -5,6 +5,8 @@ class Chance
   attr_reader :likelihood
   protected :likelihood
 
+  CERTAIN_FRACTION = 1.0
+
   def initialize(likelihood_as_fraction)
     @likelihood = likelihood_as_fraction
   end
@@ -12,6 +14,10 @@ class Chance
   def ==(other)
     return false unless other.is_a? Chance
     self.likelihood == other.likelihood 
+  end
+
+  def not
+    Chance.new(CERTAIN_FRACTION - @likelihood)
   end
 
 end
