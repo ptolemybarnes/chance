@@ -32,4 +32,9 @@ class ChanceTest < Minitest::Test
     assert_equal(Chance.new(0.1875), LIKELY.and(UNLIKELY))
   end
 
+  def test_valid_range
+    assert_raises(Exception) { Chance.new(-0.1) }
+    assert_raises(Exception) { Chance.new(1.1) }
+  end
+
 end

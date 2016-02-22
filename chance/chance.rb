@@ -8,6 +8,8 @@ class Chance
   CERTAIN_FRACTION = 1.0
 
   def initialize(likelihood_as_fraction)
+    raise "Value must be between 0 and 1 inclusive" if 
+        likelihood_as_fraction < 0 || likelihood_as_fraction > CERTAIN_FRACTION
     @likelihood = likelihood_as_fraction
   end
 
