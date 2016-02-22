@@ -26,4 +26,9 @@ class Chance
     Chance.new(self.likelihood * other.likelihood)
   end
 
+  # DeMorgan's Law: https://en.wikipedia.org/wiki/De_Morgan%27s_laws
+  def |(other)
+    ~(~self & ~other)
+  end
+
 end
