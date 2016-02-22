@@ -20,4 +20,8 @@ class Chance
     Chance.new(CERTAIN_FRACTION - @likelihood)
   end
 
+  def and(other)
+    Chance.new(self.likelihood * other.likelihood)
+  end
+
 end

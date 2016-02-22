@@ -25,4 +25,11 @@ class ChanceTest < Minitest::Test
     assert_equal(LIKELY, LIKELY.not.not)
   end
 
+  def test_and
+    assert_equal(UNLIKELY, EQUALLY_LIKELY.and(EQUALLY_LIKELY))
+    assert_equal(IMPOSSIBLE, LIKELY.and(IMPOSSIBLE))
+    assert_equal(IMPOSSIBLE, IMPOSSIBLE.and(LIKELY))
+    assert_equal(Chance.new(0.1875), LIKELY.and(UNLIKELY))
+  end
+
 end
