@@ -20,16 +20,16 @@ class ChanceTest < Minitest::Test
   end
 
   def test_not
-    assert_equal(UNLIKELY, LIKELY.not)
-    assert_equal(CERTAIN, IMPOSSIBLE.not)
-    assert_equal(LIKELY, LIKELY.not.not)
+    assert_equal(UNLIKELY, ~LIKELY)
+    assert_equal(CERTAIN, ~IMPOSSIBLE)
+    assert_equal(LIKELY, ~~LIKELY)
   end
 
   def test_and
-    assert_equal(UNLIKELY, EQUALLY_LIKELY.and(EQUALLY_LIKELY))
-    assert_equal(IMPOSSIBLE, LIKELY.and(IMPOSSIBLE))
-    assert_equal(IMPOSSIBLE, IMPOSSIBLE.and(LIKELY))
-    assert_equal(Chance.new(0.1875), LIKELY.and(UNLIKELY))
+    assert_equal(UNLIKELY, EQUALLY_LIKELY & (EQUALLY_LIKELY))
+    assert_equal(IMPOSSIBLE, LIKELY & (IMPOSSIBLE))
+    assert_equal(IMPOSSIBLE, IMPOSSIBLE & (LIKELY))
+    assert_equal(Chance.new(0.1875), LIKELY & (UNLIKELY))
   end
 
   def test_valid_range

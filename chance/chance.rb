@@ -18,11 +18,11 @@ class Chance
     self.likelihood == other.likelihood 
   end
 
-  def not
+  def ~@
     Chance.new(CERTAIN_FRACTION - @likelihood)
   end
 
-  def and(other)
+  def &(other)
     Chance.new(self.likelihood * other.likelihood)
   end
 
