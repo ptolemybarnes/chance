@@ -10,7 +10,13 @@ class Measure
   end
 
   def ==(other)
-    other == value_in_base_unit
+    self.quantity == (convert(other.unit).quantity)
+    require 'byebug'; byebug
+  end
+
+  def convert(other_unit)
+    # change other into a new measure of the same type as self
+    Measure.new(other_unit.quantity_in(unit, quantity), unit)
   end
 
   def <=>(other)

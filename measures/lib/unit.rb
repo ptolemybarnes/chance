@@ -18,12 +18,16 @@ class Unit
     quantity_in_base_unit * quantity
   end
 
+  def quantity_in(other_unit, quantity)
+    (other_unit.quantity_in_base_unit / self.quantity_in_base_unit.to_f) * quantity
+  end
+
   TEASPOON   = Unit.build(:teaspoon,   1)
   TABLESPOON = Unit.build(:tablespoon, 3)
   OUNCE      = Unit.build(:ounce,      6)
   CUP        = Unit.build(:cup,       48)
 
-  private
+  protected
 
   attr_reader :quantity_in_base_unit
 end
