@@ -18,4 +18,9 @@ class RectangleTest < Minitest::Test
     assert_raises(Exception) { Rectangle.new(-1, 2) }
   end
 
+  def test_equality
+    assert_equal(Rectangle.new(5, 10), Rectangle.new(5, 10))
+    refute_equal(Rectangle.new(5, 10),  Rectangle.new(10, 5))
+  end
+
 end

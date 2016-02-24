@@ -12,6 +12,12 @@ class ChanceTest < Minitest::Test
   LIKELY = Chance.new(0.75)
   CERTAIN = Chance.new(1)
 
+  def test_max
+    assert_equal(Chance.max(IMPOSSIBLE, LIKELY, UNLIKELY), LIKELY)
+    assert_equal(Chance.max(LIKELY, LIKELY, LIKELY), LIKELY)
+    assert_equal(Chance.max(IMPOSSIBLE), IMPOSSIBLE)
+  end
+
   def test_equality
     assert_equal(Chance.new(0.25), UNLIKELY)
     refute_equal(LIKELY, UNLIKELY)
@@ -43,5 +49,6 @@ class ChanceTest < Minitest::Test
     assert_equal(CERTAIN, LIKELY | CERTAIN)
     assert_equal(Chance.new(0.8125), LIKELY | UNLIKELY)
   end
+
 
 end

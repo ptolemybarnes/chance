@@ -13,7 +13,7 @@ class Reading
   end
 
   def convert_to(other)
-    unit.convert_to(other.unit, self.value)
+    self.class.new(unit.convert_to(other.unit, self.value), unit)
   end
 
 end
@@ -28,8 +28,8 @@ module Temperature
     end
 
     def convert_to(other_unit, value)
-      return value.send(self.name) if other_unit.is_a? self
-      conversion_method.call(value).send(other_unit.name)
+      return value if other_unit.is_a? self
+      conversion_method.call(value)
     end
 
     def is_a? other

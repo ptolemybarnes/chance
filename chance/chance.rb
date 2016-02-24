@@ -8,14 +8,14 @@ class Chance
   CERTAIN_FRACTION = 1.0
 
   def initialize(likelihood_as_fraction)
-    raise "Value must be between 0 and 1 inclusive" if 
+    raise "Value must be between 0 and 1 inclusive" if
         likelihood_as_fraction < 0 || likelihood_as_fraction > CERTAIN_FRACTION
     @likelihood = likelihood_as_fraction
   end
 
   def ==(other)
     return false unless other.is_a? Chance
-    self.likelihood == other.likelihood 
+    self.likelihood == other.likelihood
   end
 
   def ~@
@@ -24,6 +24,16 @@ class Chance
 
   def &(other)
     Chance.new(self.likelihood * other.likelihood)
+  end
+
+  def max_by(other, method)
+    self.send(method) > other.send(method) ? self : other
+  end
+
+  def self.max(*chances)
+    chances.inject do |highest, chance|
+      highest.max_by(chance, :likelihood)
+    end
   end
 
   # DeMorgan's Law: https://en.wikipedia.org/wiki/De_Morgan%27s_laws
