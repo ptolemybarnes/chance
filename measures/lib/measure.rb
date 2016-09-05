@@ -11,7 +11,6 @@ class Measure
 
   def ==(other)
     self.quantity == (convert(other.unit).quantity)
-    require 'byebug'; byebug
   end
 
   def convert(other_unit)
